@@ -1,19 +1,26 @@
 # lit 🔥
 
-`lit` is a general implementation of "literate programming", supporting all languages.
+`lit` is a general implementation of "literate programming", supporting any language.
 
-## Literate Programming
+For Vim syntax highlighting, see [vim-lit](https://github.com/spro/vim-lit).
 
-Literate programming is a way to write more readable programs with a documentation-first approach. It's great for writing tutorials, blog posts, or any kind of code that is meant to be shared.
+## What is Literate Programming?
+
+[Literate programming](https://en.wikipedia.org/wiki/Literate_programming) is a way to write more readable programs, by combining documentation with code. It's great for writing tutorials, blog posts, or any kind of code that is meant to be shared.
+
+> The main idea is to treat a program as a piece of literature, addressed to human beings rather than to a computer.
+> &mdash; Donald Knuth (inventor)
 
 There are a few specific implementations of this concept:
 
 * [Literate Python](https://github.com/bslatkin/pyliterate)
 * [Literate CoffeeScript](http://coffeescript.org/#literate)
 
-`lit` generalizes that concept, allowing you to run any Markdown file with indented code blocks.
+## What is lit?
 
-Here's an example in Python:
+`lit` generalizes the idea of literate programming to allow you to write a literate version of any program in indented Markdown code blocks.
+
+Here's an example of a literate Python script, `test.py.lit`:
 
 ```
 # My Python Script
@@ -33,7 +40,7 @@ Rendered in a Markdown viewer, this looks like:
 And run with `lit`:
 
 ```
-> lit python test.lit.python
+> lit python test.py.lit
 0
 1
 2
@@ -54,6 +61,6 @@ Copy `lit` to your path.
 For example:
 
 ```bash
-lit coffee test.lit.coffee
-lit python test.lit.python
+lit coffee test.coffee.lit
+lit python test.python.lit
 ```
