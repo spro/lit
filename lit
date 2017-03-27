@@ -1,0 +1,17 @@
+#!/bin/bash
+
+PROGRAM=$1
+FILENAME=$2
+ARGS=${@:3}
+
+sed -n 's/^    //p' $FILENAME > $FILENAME.unlit
+
+if [ $PROGRAM == "coffee" ]; then
+    coffee $FILENAME.unlit $ARGS
+elif [ $PROGRAM == "python" ]; then
+    python $FILENAME.unlit $ARGS
+else
+    echo "lit: No known type for $FILENAME"
+fi
+
+rm $FILENAME.unlit
