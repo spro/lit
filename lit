@@ -1,9 +1,30 @@
 #!/bin/bash
 
+while getopts ":b" opt; do
+    case $opt in
+        b)
+			ARGS_BEFORE=true
+            ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            ;;
+		:)
+			echo "IDK"
+			;;
+    esac
+done
+
+shift "$((OPTIND - 1))"
+
 PROGRAM=$1
 FILENAME=$2
 ARGS=${@:3}
 
 sed -n 's/^    //p' $FILENAME > $FILENAME.unlit
-$PROGRAM $FILENAME.unlit $ARGS
+
+if $ARGS_BEFORE; then
+	$PROGRAM $ARGS $FILENAME.unlit
+else
+	$PROGRAM $FILENAME.unlit $ARGS
+fi
 rm $FILENAME.unlit

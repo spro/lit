@@ -62,5 +62,19 @@ For example:
 
 ```bash
 lit coffee test.coffee.lit
-lit python test.python.lit
+lit python test.py.lit
+```
+
+Arguments passed after the filename will be passed onto the executing program:
+
+```
+lit python test.py.lit -n 500
+-> python test.py.lit.unlit -n 500
+```
+
+Certain programs require command line options to become before the program name, in which case the `lit -b` (for before) command should be used:
+
+```
+lit -b gcc test.c.lit -x c -o test
+-> gcc -x c -o test test.c.lit.unlit
 ```
