@@ -1,0 +1,19 @@
+First we import the builtin `nn` module from Torch, and `rnn` from [Element Research's rnn](https://github.com/Element-Research/rnn)
+
+    require 'nn'
+    require 'rnn'
+
+We will use a single `FastLSTM` module for the inner layer.
+
+    local lstm = nn.Sequential()
+        :add(nn.FastLSTM(n_chars, opt.hidden_size))
+
+The full encoder will run input steps through the `lstm` layer, select only the last output (final hidden state), encode with another linear layer, and finally apply logarithmic softmax.
+
+    model = nn.Sequential()
+        :add(nn.Sequencer(lstm))
+        :add(nn.Select(1, -1))
+        :add(nn.Linear(opt.hidden_size, n_classes))
+        :add(nn.LogSoftMax())
+
+

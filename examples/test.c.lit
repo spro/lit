@@ -1,0 +1,11 @@
+To use the `printf` function we need to first include the standard IO library: 
+
+    #include <stdio.h>
+
+Then we can print "Hello World" in our `main` function:
+
+    int main(void) {
+        printf("Hello World");
+        return 0;
+    }
+
