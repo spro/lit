@@ -21,6 +21,7 @@ FILENAME=$2
 ARGS=${@:3}
 
 sed -n 's/^    //p' $FILENAME > $FILENAME.unlit
+awk '/abc/{flag=1;next}/mno/{flag=0}flag' $FILENAME >> $FILENAME.unlit
 
 if $ARGS_BEFORE; then
 	$PROGRAM $ARGS $FILENAME.unlit
