@@ -56,16 +56,16 @@ Copy `lit` to your path.
 
 **`lit [program] [filename] [args...]`**
 
-`lit` will first turn your .lit file into an .unlit file by removing everything except the indented blocks. It then runs that .unlit file via `[program]`, passing on extra arguments:
+`lit` will first turn your .lit file into an unlit file by removing everything except the indented blocks. It then runs that unlit file via `[program]`, passing on extra arguments:
 
 ```
 lit python test.py.lit -n 500
-=> python test.py.lit.unlit -n 500
+=> python test.py -n 500
 ```
 
 Certain programs require command line options to be passed before the program name, in which case the `-b` (for before) option should be used:
 
 ```
 lit -b gcc test.cpp.lit -x c++ -o test
-=> gcc -x c++ -o test test.cpp.lit.unlit
+=> gcc -x c++ -o test test.cpp
 ```
