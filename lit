@@ -20,11 +20,13 @@ PROGRAM=$1
 FILENAME=$2
 ARGS=${@:3}
 
-sed -n 's/^    //p' $FILENAME > $FILENAME.unlit
+unlit=`echo $FILENAME |  sed 's/\(.*\).lit/\1/'`
+
+sed -n 's/^    //p' $FILENAME > $unlit
 
 if $ARGS_BEFORE; then
-	$PROGRAM $ARGS $FILENAME.unlit
+	$PROGRAM $ARGS $unlit
 else
-	$PROGRAM $FILENAME.unlit $ARGS
+	$PROGRAM $unlit $ARGS
 fi
-rm $FILENAME.unlit
+rm $unlit
